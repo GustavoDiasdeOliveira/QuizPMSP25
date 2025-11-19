@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado PMSP 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <div id="menu-screen" class="screen active">
+            <div class="hero-header">
+                <h1>Quiz PM-SP</h1>
+                <p>Simulados da Alfacon</p>
+            </div>
+
+            <div class="settings-card">
+                <h3>1. Escolha o Modo:</h3>
+                <select id="subject-select" class="form-select">
+                    <option value="Língua Portuguesa e Interpretação de Texto">Língua Portuguesa</option>
+                    <option value="Matemática">Matemática</option>
+                    <option value="Conhecimentos Gerais">Conhecimentos Gerais</option>
+                    <option value="Noções Básicas de Informática">Informática</option>
+                    <option value="Noções de Administração Pública">Adm. Pública</option>
+                </select>
+
+                <h3>2. Quantidade de Questões:</h3>
+                <div class="amount-options" id="amount-options">
+                    <button class="amt-btn" data-value="5">5</button>
+                    <button class="amt-btn" data-value="10">10</button>
+                    <button class="amt-btn" data-value="20">20</button>
+                    <button class="amt-btn selected" data-value="60">60</button>
+                </div>
+                <p class="info-text" id="mode-info">Modo Simulado: 60 questões com distribuição oficial do edital.</p>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Card Simulado 1 -->
+                <div class="simulado-card" onclick="selectSimulado('simulado1')">
+                    <div class="card-icon">👮</div>
+                    <h3>Simulado 01</h3>
+                    <p>Base: Prova 30/07/2023</p>
+                    <span class="tag">60 Questões</span>
+                </div>
+
+                <!-- Card Simulado 2 -->
+                <div class="simulado-card" onclick="selectSimulado('simulado2')">
+                    <div class="card-icon">👮</div>
+                    <h3>Simulado 02</h3>
+                    <p>Base: Prova 05/02/2023</p>
+                    <span class="tag">60 Questões</span>
+                </div>
+
+                <!-- Card Futuro (Exemplo) -->
+                <div class="simulado-card" onclick="selectSimulado('simulado3')">
+                    <div class="card-icon">👮</div>
+                    <h3>Simulado 03</h3>
+                    <p>Base: Prova 31/08/2025</p>
+                    <span class="tag">60 Questões</span>
+                </div>
+            </div>
+            <br>
+            <button id="start-btn" class="btn-primary pulse">INICIAR PROVA</button>
+        </div>
+
+        <div id="quiz-screen" class="screen hidden">
+            <header class="quiz-header">
+                <div class="header-top">
+                    <span id="subject-display">Matéria Atual</span>
+                    <span id="timer-display">Tempo: 00:00</span>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-labels">
+                        <span id="question-counter">1/60</span>
+                        <span id="score-counter">Acertos: 0</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div id="progress-bar" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="question-card">
+                <div id="context-area" class="context-box hidden">
+                    <div class="context-header">📖 Texto de Apoio</div>
+                    <div id="context-text" class="context-content"></div>
+                </div>
+
+                <h2 id="question-text" class="question-enunciado"></h2>
+
+                <div id="options-container" class="options-list">
+                </div>
+            </div>
+
+            <div id="explanation-area" class="explanation-box hidden">
+                <h3>📝 Gabarito Comentado:</h3>
+                <p id="explanation-text"></p>
+            </div>
+
+            <footer class="quiz-footer">
+                <button id="quit-btn" class="btn-text">Sair</button>
+                <div>
+                    <button id="next-btn" class="btn-secondary hidden">Próxima ➔</button>
+                    <button id="finish-btn" class="btn-danger hidden">Finalizar</button>
+                </div>
+            </footer>
+        </div>
+
+        <div id="result-screen" class="screen hidden">
+            <div class="result-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Brasao_pmesp_vetor.svg/200px-Brasao_pmesp_vetor.svg.png"
+                    alt="Logo" class="logo-small">
+                <h2>Resultado Final</h2>
+
+                <div class="score-circle-container">
+                    <div class="score-circle">
+                        <span id="final-percent">0%</span>
+                    </div>
+                </div>
+
+                <h3 id="final-message">Mensagem</h3>
+
+                <div class="stats-grid">
+                    <div class="stat-item correct">
+                        <span class="val" id="total-correct">0</span>
+                        <span class="lbl">Acertos</span>
+                    </div>
+                    <div class="stat-item wrong">
+                        <span class="val" id="total-wrong">0</span>
+                        <span class="lbl">Erros</span>
+                    </div>
+                    <div class="stat-item time">
+                        <span class="val" id="total-time">00:00</span>
+                        <span class="lbl">Tempo</span>
+                    </div>
+                </div>
+
+                <button id="restart-btn" class="btn-primary">Novo Simulado</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
